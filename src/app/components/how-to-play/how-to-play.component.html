@@ -1,0 +1,27 @@
+<div class="p-28">
+  <div class="grid grid-cols-4">
+    <div class="col-span-1">
+      <div
+        (click)="backBtn()"
+        class="bg-pinkGradient p-7 rounded-full lg:w-[94px] lg:h-[94px] shadow-2xl cursor-pointer"
+      >
+        <img src="../../../assets/images/icon-back.svg" alt="" />
+      </div>
+    </div>
+    <div class="col-span-3">
+      <img src="../../../assets/images/How to Play.svg" alt="" />
+    </div>
+  </div>
+
+  <div class="flex justify-center gap-7 lg:mt-20">
+    @for (guide of gameGuide; track $index) {
+    <div
+      class="bg-white rounded-3xl w-64 shadow-2xl p-6 text-center flex flex-col gap-6"
+    >
+      <h1 class="text-5xl text-blue">0{{ guide.id }}</h1>
+      <h1 class="text-4xl text-darkNavy">{{ guide.title }}</h1>
+      <p class="text-pink text-lg">{{ guide.description }}</p>
+    </div>
+    }
+  </div>
+</div>
