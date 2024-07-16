@@ -1,30 +1,43 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../../services/category.service';
-import { Observable, map } from 'rxjs';
-import { Category } from '../../model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-categories',
   standalone: true,
   imports: [],
   templateUrl: './categories.component.html',
-  styleUrl: './categories.component.css',
+  styleUrls: ['./categories.component.css'],
 })
 export class CategoriesComponent implements OnInit {
   categoryNames: string[] = [];
 
-  constructor(private categoryService: CategoryService) {}
+  constructor(
+    private router: Router,
+    private categoryService: CategoryService
+  ) {}
 
   ngOnInit(): void {
     this.categoryService.getAllCategories().subscribe(
-      (categories: string[]) => {
-        this.categoryNames = categories;
-        console.log('categories', this.categoryNames);
+      (categories) => {
+        // Ensure categories is an object and extract keys
+        if (typeof categories === 'object' && !Array.isArray(categories)) {
+          this.categoryNames = Object.keys(categories);
+        } else {
+          console.error(
+            'Received categories data is not an object:',
+            categories
+          );
+        }
       },
       (error) => {
         console.error('Error fetching categories:', error);
       }
     );
+  }
+
+  startGame(category: string): void {
+    this.router.navigate(['/game', category]);
   }
 
   backBtn(): void {

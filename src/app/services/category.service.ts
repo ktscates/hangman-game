@@ -8,7 +8,7 @@ import { Observable, of } from 'rxjs';
 export class CategoryService {
   constructor() {}
 
-  getAllCategories(): Observable<string[]> {
-    return of(Object.keys(CATEGORIES));
+  getAllCategories(): Observable<any> {
+    return of(CATEGORIES);
   }
 }

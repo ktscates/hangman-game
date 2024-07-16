@@ -1,0 +1,98 @@
+<!-- game.component.html -->
+<div class="min-h-screen flex flex-col items-center justify-between p-24">
+  <div class="flex justify-between items-center w-full px-4">
+    <div class="flex items-center gap-6">
+      <div
+        class="bg-pinkGradient w-20 h-20 flex justify-center items-center rounded-full"
+      >
+        <img src="../../../assets/images/icon-menu.svg" alt="" />
+      </div>
+
+      <h1 class="text-white text-6xl">{{ category }}</h1>
+    </div>
+    <div class="flex items-center gap-4">
+      <div class="bg-white w-32 h-4 rounded-full"></div>
+      <img src="../../../assets/images/icon-heart.svg" alt="" />
+    </div>
+  </div>
+
+  <div class="flex justify-center my-8">
+    @for (letter of gameState.maskedWord; track $index) {
+    <div
+      *ngFor="let letter; of"
+      class="w-20 h-20 text-5xl bg-blue text-white rounded-lg flex shadow-lg flex-wrap items-center justify-center cursor-pointer mx-1"
+    >
+      {{ letter === "" ? "" : letter }}
+    </div>
+    }
+
+    <div class="flex flex-col items-center mt-20">
+      <div class="flex justify-center mb-2">
+        @for (letter of 'QWERTYUIOP'.split(''); track $index) {
+        <button
+          (click)="guessLetter(letter)"
+          class="w-12 h-12 text-4xl bg-white text-darkNavy rounded-lg flex items-center justify-center cursor-pointer m-3"
+          [disabled]="gameState.guessedLetters.includes(letter)"
+          [ngClass]="{
+            'bg-gray-300 text-darkNavy': gameState.guessedLetters.includes(
+              letter.toUpperCase()
+            ),
+            'bg-white text-darkNavy': !gameState.guessedLetters.includes(
+              letter.toUpperCase()
+            )
+          }"
+        >
+          {{ letter }}
+        </button>
+        }
+      </div>
+      <div class="flex justify-center mb-2">
+        @for (letter of 'ASDFGHJKL'.split(''); track $index) {
+        <button
+          (click)="guessLetter(letter)"
+          class="w-12 h-12 text-4xl bg-white text-darkNavy rounded-lg flex items-center justify-center cursor-pointer m-3"
+          [disabled]="gameState.guessedLetters.includes(letter)"
+          [ngClass]="{
+            'bg-gray-300 text-darkNavy': gameState.guessedLetters.includes(
+              letter.toUpperCase()
+            ),
+            'bg-white text-darkNavy': !gameState.guessedLetters.includes(
+              letter.toUpperCase()
+            )
+          }"
+        >
+          {{ letter }}
+        </button>
+        }
+      </div>
+      <div class="flex justify-center mb-2">
+        @for (letter of 'ZXCVBNM'.split(''); track $index) {
+        <button
+          (click)="guessLetter(letter)"
+          class="w-12 h-12 text-4xl bg-white text-darkNavy rounded-lg flex items-center justify-center cursor-pointer m-3"
+          [disabled]="gameState.guessedLetters.includes(letter)"
+          [ngClass]="{
+            'bg-gray-300 text-darkNavy': gameState.guessedLetters.includes(
+              letter.toUpperCase()
+            ),
+            'bg-white text-darkNavy': !gameState.guessedLetters.includes(
+              letter.toUpperCase()
+            )
+          }"
+        >
+          {{ letter }}
+        </button>
+        }
+      </div>
+    </div>
+
+    <!-- <div *ngIf="showModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+    <div class="bg-white p-8 rounded-lg shadow-lg text-center">
+      <div *ngIf="gameState.isWin" class="text-2xl mb-4">Congratulations, You Won!</div>
+      <div *ngIf="gameState.isLose" class="text-2xl mb-4">Game Over. The word was {{ gameState.word }}.</div>
+      <button (click)="closeModal()" class="bg-blue-500 text-white p-4 rounded-lg mb-2">Close</button>
+      <button (click)="navigateToHome()" class="bg-purple-600 text-white p-4 rounded-lg">Home</button>
+    </div>
+  </div> -->
+  </div>
+</div>
