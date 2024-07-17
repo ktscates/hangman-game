@@ -1,0 +1,73 @@
+<div
+  class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
+>
+  <div class="bg-blueGradient rounded-3xl shadow-2xl p-20">
+    @if(isWin){
+    <div class="-mt-32">
+      <img src="../../../assets/images/You Win.svg" alt="" />
+    </div>
+    } @else if(isLose) {
+    <div class="-mt-32">
+      <img src="../../../assets/images/You Lose.svg" alt="" />
+    </div>
+    } @else {
+    <div class="-mt-32">
+      <img src="../../../assets/images/Paused.svg" alt="" />
+    </div>
+    }
+
+    <div class="flex flex-col gap-8 pt-20">
+      <div class="text-center">
+        @if (isWin && isLose) {
+        <button
+          class="bg-blue cursor-pointer uppercase text-white font-semibold lg:text-3xl md:text-4xl text-xl tracking-wider md:px-8 md:py-2 px-6 py-1.5 rounded-full shadow-2xl"
+        >
+          Play Again!
+        </button>
+        } @else {
+        <button
+          (click)="continue()"
+          class="bg-blue cursor-pointer uppercase text-white font-semibold lg:text-3xl md:text-4xl text-xl tracking-wider md:px-8 md:py-2 px-6 py-1.5 rounded-full shadow-2xl"
+        >
+          Continue
+        </button>
+        }
+      </div>
+      <div class="text-center">
+        <button
+          (click)="pickNewCategory()"
+          class="bg-blue cursor-pointer uppercase text-white font-semibold lg:text-3xl md:text-4xl text-xl tracking-wider md:px-8 md:py-2 px-6 py-1.5 rounded-full shadow-2xl"
+        >
+          New Category
+        </button>
+      </div>
+
+      <div class="text-center">
+        <button
+          (click)="onQuit()"
+          class="bg-pinkGradient uppercase cursor-pointer text-white font-semibold lg:text-3xl md:text-4xl text-xl tracking-wider md:px-8 md:py-2 px-6 py-1.5 rounded-full shadow-2xl"
+        >
+          Quit Game
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="text-2xl mb-4">Game Paused</div>
+    @if(!isWin && !isLose){
+    <button
+      (click)="continue()"
+      class="bg-blue-500 text-white p-4 rounded-lg mb-2"
+    >
+      Continue
+    </button>
+    <button
+      (click)="pickNewCategory()"
+      class="bg-purple-600 text-white p-4 rounded-lg mb-2"
+    >
+      Pick New Category
+    </button>
+    <button (click)="onQuit()" class="bg-red-600 text-white p-4 rounded-lg">
+      Quit
+    </button>
+    } -->
+</div>
