@@ -20,7 +20,6 @@ export class CategoriesComponent implements OnInit {
   ngOnInit(): void {
     this.categoryService.getAllCategories().subscribe(
       (categories) => {
-        // Ensure categories is an object and extract keys
         if (typeof categories === 'object' && !Array.isArray(categories)) {
           this.categoryNames = Object.keys(categories);
         } else {

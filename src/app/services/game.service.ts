@@ -7,15 +7,16 @@ import { CategoryService } from './category.service';
 })
 export class GameService {
   private gameStateSubject = new BehaviorSubject<any>({
-    maskedWord: '',
+    maskedWord: [],
     remainingAttempts: 6,
     guessedLetters: [],
     isWin: false,
     isLose: false,
+    word: '',
   });
 
   gameState$ = this.gameStateSubject.asObservable();
-  categories: any = {}; // Initialize with an empty object
+  categories: any = {};
 
   constructor(private categoryService: CategoryService) {
     this.categoryService.getAllCategories().subscribe((categories) => {
@@ -37,8 +38,6 @@ export class GameService {
 
     const word = words[Math.floor(Math.random() * words.length)];
     const maskedWord = Array(word.length).fill('');
-    console.log('masked', maskedWord);
-    console.log('word', word);
 
     this.gameStateSubject.next({
       maskedWord,
@@ -46,23 +45,20 @@ export class GameService {
       guessedLetters: [],
       isWin: false,
       isLose: false,
-      word,
+      word: word.toUpperCase(),
     });
   }
 
   guessLetter(letter: string) {
-    const state = { ...this.gameStateSubject.value }; // Make a copy of the current state
+    const state = { ...this.gameStateSubject.value };
 
-    // Check if the letter has already been guessed
     if (state.guessedLetters.includes(letter)) {
       return;
     }
 
-    // Add the letter to the guessedLetters array
     state.guessedLetters.push(letter);
 
-    // Check if the guessed letter is in the word
-    const wordArray = state.word.toUpperCase().split('');
+    const wordArray = state.word.split('');
     let correctGuess = false;
 
     for (let i = 0; i < wordArray.length; i++) {
@@ -72,12 +68,13 @@ export class GameService {
       }
     }
 
-    // Update the gameStateSubject with the updated state
-    this.gameStateSubject.next({
-      ...state,
-      remainingAttempts: state.remainingAttempts - (correctGuess ? 0 : 1),
-      isWin: state.maskedWord.join('') === state.word, // Check if the word is completely revealed
-      isLose: state.remainingAttempts === 0, // Check if no attempts are remaining
-    });
+    if (!correctGuess) {
+      state.remainingAttempts--;
+    }
+
+    state.isWin = state.maskedWord.join('') === state.word;
+    state.isLose = state.remainingAttempts === 0;
+
+    this.gameStateSubject.next(state);
   }
 }
