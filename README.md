@@ -1,4 +1,5 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/9d39c865-819a-4b06-b77c-53d87a72dd9d/deploy-status)](https://app.netlify.com/sites/ktscates-hangman/deploys)
+![Github actions](https://github.com/ktscates/hangman-game/actions/workflows/node.js.yml/badge.svg)
 
 # Hangman Game
 
