@@ -13,4 +13,10 @@ describe('CategoryService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should get categories', () => {
+    service.getAllCategories().subscribe((categories) => {
+      expect(categories.length).toBeGreaterThan(0);
+    });
+  });
 });
