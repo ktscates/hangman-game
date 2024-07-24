@@ -29,8 +29,8 @@ describe('HowToPlayComponent', () => {
   });
 
   it('should go back', () => {
-    jest.spyOn(window.history, 'back');
+    const historySpy = jest.spyOn(window.history, 'back');
     component.backBtn();
-    expect(window.history.back).toHaveBeenCalled();
+    expect(historySpy).toHaveBeenCalled();
   });
 });
