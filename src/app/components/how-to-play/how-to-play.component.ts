@@ -18,14 +18,11 @@ export class HowToPlayComponent implements OnInit {
     this.howToPlayService.howToPlayData().subscribe(
       (guides: GameGuide[]) => {
         this.gameGuide = guides;
-        console.log('categories', this.gameGuide);
       },
       (error) => {
         console.error('Error fetching guides:', error);
       }
     );
-
-    console.log('guides', this.gameGuide);
   }
 
   backBtn(): void {
