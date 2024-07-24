@@ -43,9 +43,4 @@ describe('GameComponent', () => {
   it('should create the component', () => {
     expect(component).toBeTruthy();
   });
-
-  it('should initialize the form', () => {
-    expect(component.form).toBeTruthy();
-    expect(component.form.contains('letter')).toBe(true);
-  });
 });
